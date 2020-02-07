@@ -20,6 +20,7 @@ import { noop } from 'rxjs';
 export class NgBootstrapFileuploadAngularComponent
   implements ControlValueAccessor, OnInit {
   selectedFile: File = null;
+  defaultUrl: string;
   fileName: string;
   @Input() previewUrl = null;
   @Input() showPreview = true;
@@ -34,6 +35,8 @@ export class NgBootstrapFileuploadAngularComponent
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
     this.ngControl = this.inj.get(NgControl);
+
+    this.defaultUrl = this.previewUrl;
   }
 
   writeValue(newModel: any) {}
@@ -46,6 +49,13 @@ export class NgBootstrapFileuploadAngularComponent
       this.fileName = this.selectedFile.name;
       this.preview();
     }
+  }
+
+  clear() {
+    this.selectedFile = null;
+    this.fileName = '';
+    this.previewUrl = this.defaultUrl;
+    console.log(this.defaultUrl);
   }
 
   preview() {
