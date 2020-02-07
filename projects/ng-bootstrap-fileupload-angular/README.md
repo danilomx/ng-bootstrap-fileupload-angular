@@ -56,7 +56,7 @@ This fileupload is responsive design, so feel free to try it in your desktops, t
     <form>
       <div [formGroup]="formGroup">
         <ng-bootstrap-fileupload-angular
-            previewUrl="https://dashboard.mx/ffct_laravel/public/img/user.png"
+            previewUrl="https://raw.githubusercontent.com/danilomx/ng-bootstrap-fileupload-angular/master/src/assets/user.png"
             showPreview="true" formControlName="FileUp"></ng-bootstrap-fileupload-angular>
       </div>
     </form>
