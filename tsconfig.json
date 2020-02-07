@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-bootstrap-fileupload-angular": [
+        "dist/ng-bootstrap-fileupload-angular"
+      ],
+      "ng-bootstrap-fileupload-angular/*": [
+        "dist/ng-bootstrap-fileupload-angular/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

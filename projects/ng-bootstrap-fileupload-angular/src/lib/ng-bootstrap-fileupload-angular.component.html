@@ -1,0 +1,10 @@
+<img *ngIf="showPreview" [src]="previewUrl ? previewUrl : ''" class="img-fluid" alt="Image">
+
+<input type="file" class="invisible" placeholder="Descripción" #file (change)="onFileSelected($event)" />
+
+<div class="input-group mb-2" (click)="file.click()">
+  <div class="input-group-prepend">
+    <div class="input-group-text"><i class="fa fa-folder-open-o" aria-hidden="true"></i></div>
+  </div>
+  <input type="text" [value]="fileName ? fileName : ''" class="form-control" placeholder="Seleccione">
+</div>
