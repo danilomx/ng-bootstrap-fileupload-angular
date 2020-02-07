@@ -55,7 +55,6 @@ export class NgBootstrapFileuploadAngularComponent
     this.selectedFile = null;
     this.fileName = '';
     this.previewUrl = this.defaultUrl;
-    console.log(this.defaultUrl);
   }
 
   preview() {
