@@ -4,6 +4,7 @@
 
 [![npm](https://img.shields.io/npm/v/ng-bootstrap-fileupload-angular.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/ng-bootstrap-fileupload-angular)
 [![npm](https://img.shields.io/npm/dm/ng-bootstrap-fileupload-angular.svg)](https://www.npmjs.com/package/ng-bootstrap-fileupload-angular)
+![npm](https://img.shields.io/npm/dt/ng-bootstrap-fileupload-angular)
 
 **This package supports Angular 8+**
 
