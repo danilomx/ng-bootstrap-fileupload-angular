@@ -1,27 +1,96 @@
-# Ngbootstrapfileuploadangular
+# ng-bootstrap-fileupload-angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+# Angular File Upload
 
-## Development server
+[![npm](https://img.shields.io/npm/v/ng-bootstrap-fileupload-angular.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/ng-bootstrap-fileupload-angular)
+[![npm](https://img.shields.io/npm/dm/ng-bootstrap-fileupload-angular.svg)](https://www.npmjs.com/package/ng-bootstrap-fileupload-angular)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**This package supports Angular 8+**
 
-## Code scaffolding
+Description
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+This fileupload is responsive design, so feel free to try it in your desktops, tablets and mobile devices.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Dependencies
+[bootstrap ^4.0.0](https://www.npmjs.com/package/bootstrap)
 
-## Running unit tests
+## Live Demo
+[https://ng-bootstrap-fileupload-angular.stackblitz.io](https://stackblitz.com/edit/ng-bootstrap-fileupload-angular)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How to Use
 
-## Running end-to-end tests
+1.  Install with [npm](https://www.npmjs.com):`npm install ng-bootstrap-fileupload-angular --save`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+2.  Add NgBootstrapFileuploadAngularModule to your **@NgModule** like example below
 
-## Further help
+    ```typescript
+    import { BrowserModule } from "@angular/platform-browser";
+    import { NgModule } from "@angular/core";
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    import { AppComponent } from "./app.component";
+    import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+    import { CommonModule } from "@angular/common";
+
+    import { NgBootstrapFileuploadAngularModule } from "ng-bootstrap-fileupload-angular";
+
+    @NgModule({
+      declarations: [AppComponent],
+      imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgBootstrapFileuploadAngularModule,
+        CommonModule
+      ],
+      providers: [],
+      bootstrap: [AppComponent]
+    })
+    export class AppModule {}
+    ```
+
+3.  Add your input into **form** like example below
+
+    ```html
+    <form>
+      <div [formGroup]="formGroup">
+        <ng-bootstrap-fileupload-angular
+            previewUrl="https://images.unsplash.com/photo-1520719627573-5e2c1a6610f0?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=60&h=60&fit=crop&ixid=eyJhcHBfaWQiOjF9"
+            showPreview="true" formControlName="FileUp"></ng-bootstrap-fileupload-angular>
+      </div>
+    </form>
+    ```
+
+4.  Connect to your __component__
+
+    ```typescript
+    import { Component, OnInit } from "@angular/core";
+    import { FormGroup, FormControl, Validators } from "@angular/forms";
+
+    @Component({
+      selector: "app-root",
+      templateUrl: "./app.component.html",
+      styleUrls: ["./app.component.scss"]
+    })
+    export class AppComponent implements OnInit {
+      title = "FileUp";
+      formGroup: FormGroup;
+
+      ngOnInit() {
+        this.formGroup = new FormGroup({
+          FileUp: new FormControl(null, {
+            validators: [Validators.required]
+          })
+        });
+      }
+    }
+    ```
+
+License
+-------
+* License: MIT
+
+Author
+-------
+**Danilo Meneses Loaisiga**

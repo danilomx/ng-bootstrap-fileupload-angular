@@ -1,6 +1,19 @@
 {
   "name": "ng-bootstrap-fileupload-angular",
   "version": "0.0.1",
+  "description": "Angular File Upload",
+  "keywords": [
+    "Angular",
+    "file upload",
+    "FileUpload",
+    "bootstrap"
+  ],
+  "author": "Danilo Meneses <danilo1233@Hotmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danilomx/ng-bootstrap-fileupload-angular"
+  },
   "peerDependencies": {
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14"
