@@ -5,7 +5,8 @@ import {
   forwardRef,
   Input,
   ElementRef,
-  HostListener
+  HostListener,
+  ViewChild
 } from '@angular/core';
 import {
   NgControl,
@@ -32,6 +33,7 @@ export class NgBootstrapFileuploadAngularComponent
   fileName: string;
   @Input() previewUrl = null;
   @Input() showPreview = true;
+  @ViewChild('file', null) file: ElementRef;
 
   private onTouched: () => void = noop;
   private onChange: (_: any) => void = noop;
@@ -46,7 +48,6 @@ export class NgBootstrapFileuploadAngularComponent
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
     this.ngControl = this.inj.get(NgControl);
-
     this.defaultUrl = this.previewUrl;
   }
 
@@ -55,14 +56,9 @@ export class NgBootstrapFileuploadAngularComponent
     this.selectedFile = null;
   }
 
-  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
-    //const file = event && event.item(0);
-
-    this.selectedFile = null;
-    this.onChange(this.selectedFile);
-  }
-
   onFileSelected($event) {
+
+    console.log('file selected change')
     this.selectedFile = $event.target.files[0] as File;
 
     if (this.selectedFile) {
@@ -76,6 +72,8 @@ export class NgBootstrapFileuploadAngularComponent
     this.selectedFile = null;
     this.fileName = '';
     this.previewUrl = this.defaultUrl;
+    this.file.nativeElement.value = null;
+    this.onChange(this.selectedFile);
   }
 
   preview() {

@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     NgBootstrapFileuploadAngularModule,
-    CommonModule 
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
