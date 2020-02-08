@@ -1,4 +1,12 @@
-import { OnInit, Component, Injector, forwardRef, Input } from '@angular/core';
+import {
+  OnInit,
+  Component,
+  Injector,
+  forwardRef,
+  Input,
+  ElementRef,
+  HostListener
+} from '@angular/core';
 import {
   NgControl,
   ControlValueAccessor,
@@ -30,7 +38,10 @@ export class NgBootstrapFileuploadAngularComponent
 
   public ngControl: NgControl;
 
-  constructor(private inj: Injector) {}
+  constructor(
+    private inj: Injector,
+    private host: ElementRef<HTMLInputElement>
+  ) {}
 
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
@@ -39,7 +50,17 @@ export class NgBootstrapFileuploadAngularComponent
     this.defaultUrl = this.previewUrl;
   }
 
-  writeValue(newModel: any) {}
+  writeValue(newModel: any) {
+    this.host.nativeElement.value = '';
+    this.selectedFile = null;
+  }
+
+  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
+    //const file = event && event.item(0);
+
+    this.selectedFile = null;
+    this.onChange(this.selectedFile);
+  }
 
   onFileSelected($event) {
     this.selectedFile = $event.target.files[0] as File;
