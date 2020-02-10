@@ -1,7 +1,7 @@
 <img *ngIf="showPreview && previewUrl" [src]="previewUrl ? previewUrl : ''" class="img-fluid" alt="Image"
   (click)="file.click()">
 
-<input type="file" class="invisible" placeholder="Descripción" #file (change)="onFileSelected($event)" />
+<input type="file" class="d-none invisible" placeholder="Descripción" #file (change)="onFileSelected($event)" />
 
 <div class="input-group mb-2">
   <div class="input-group-prepend" (click)="clear()">
