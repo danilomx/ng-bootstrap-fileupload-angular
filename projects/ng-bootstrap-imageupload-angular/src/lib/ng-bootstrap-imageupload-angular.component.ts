@@ -49,18 +49,6 @@ export class NgBootstrapImageuploadAngularComponent
     this.ngControl = this.inj.get(NgControl);
   }
 
-  clearSavedFile() {
-    this.savedFile = {
-      id: null,
-      name: null,
-      size: null,
-      url: null,
-      file: null
-    };
-
-    console.log('clearSavedFile');
-  }
-
   writeValue(newFileModel: any) {
     if (newFileModel) {
       this.savedFile = newFileModel;
@@ -80,7 +68,7 @@ export class NgBootstrapImageuploadAngularComponent
       this.preview();
 
       this.savedFile.name = this.savedFile.file.name;
-      //this.savedFile.size = this.bytesToSize(this.savedFile.file.size);
+      // this.savedFile.size = this.bytesToSize(this.savedFile.file.size);
 
       this.onChange(this.savedFile);
     }
