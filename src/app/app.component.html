@@ -1,7 +1,7 @@
 <form>
   <div [formGroup]="formGroup">
-    <ng-bootstrap-fileupload-angular formControlName="FileUp" ></ng-bootstrap-fileupload-angular>
-    <!-- <ng-bootstrap-imageupload-angular formControlName="FileUp" ></ng-bootstrap-imageupload-angular> -->
+    <!-- <ng-bootstrap-fileupload-angular formControlName="FileUp" ></ng-bootstrap-fileupload-angular> -->
+    <ng-bootstrap-imageupload-angular formControlName="FileUp" [savedFile]="savedFile" ></ng-bootstrap-imageupload-angular> 
 <!--     
     <ng-bootstrap-imageupload-angular
       previewUrl="https://raw.githubusercontent.com/danilomx/ng-bootstrap-fileupload-angular/master/src/assets/user.png"

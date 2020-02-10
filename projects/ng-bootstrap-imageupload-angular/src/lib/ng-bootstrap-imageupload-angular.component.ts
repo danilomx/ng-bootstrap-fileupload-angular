@@ -14,6 +14,7 @@ import {
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs';
+import { FileModel } from 'ng-bootstrap-fileupload-angular/lib/file.model';
 
 @Component({
   selector: "ng-bootstrap-imageupload-angular",
@@ -28,12 +29,12 @@ import { noop } from 'rxjs';
 })
 export class NgBootstrapImageuploadAngularComponent
   implements ControlValueAccessor, OnInit {
-  selectedFile: File = null;
+  // selectedFile: File = null;
+  @Input() savedFile: FileModel;
   defaultUrl: string;
-  fileName: string;
-  @Input() previewUrl = null;
+  // @Input() previewUrl = null;
   @Input() showPreview = true;
-  @ViewChild('file', null) file: ElementRef;
+  @ViewChild('fileInput', null) fileInput: ElementRef;
 
   private onTouched: () => void = noop;
   private onChange: (_: any) => void = noop;
@@ -48,45 +49,75 @@ export class NgBootstrapImageuploadAngularComponent
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
     this.ngControl = this.inj.get(NgControl);
-    this.defaultUrl = this.previewUrl;
+    this.defaultUrl = this.savedFile.url;
+    //this.clearSavedFile();
+  }
+
+  clearSavedFile() {
+    this.savedFile = {
+      id: null,
+      name: null,
+      size: null,
+      url: null,
+      file: null
+    };
+
+    console.log('clearSavedFile');
   }
 
   writeValue(newModel: any) {
-    this.host.nativeElement.value = '';
-    this.selectedFile = null;
+   //this.host.nativeElement.value = '';
   }
 
   onFileSelected($event) {
+    this.uploadFile($event.target.files[0]);
+  }
 
-    console.log('file selected change')
-    this.selectedFile = $event.target.files[0] as File;
+  uploadFile(fileToUpload: File) {
+    console.log(this.savedFile);
+    this.savedFile.file = fileToUpload;
 
-    if (this.selectedFile) {
-      this.onChange(this.selectedFile);
-      this.fileName = this.selectedFile.name;
+    if (this.savedFile.file) {
       this.preview();
+
+      this.savedFile.name = this.savedFile.file.name;
+      this.savedFile.size = this.bytesToSize(this.savedFile.file.size);
+
+      this.onChange(this.savedFile);
     }
   }
 
+  bytesToSize(bytes: number) {
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes === 0) {
+      return 'n/a';
+    }
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
+  }
+
   clear() {
-    this.selectedFile = null;
-    this.fileName = '';
-    this.previewUrl = this.defaultUrl;
-    this.file.nativeElement.value = null;
-    this.onChange(this.selectedFile);
+    this.savedFile.name = null;
+    this.savedFile.size = null;
+    this.savedFile.url = null;
+    this.savedFile.file = null;
+
+    this.savedFile.url = this.defaultUrl;
+    this.fileInput.nativeElement.value = null;
+    this.onChange(this.savedFile);
   }
 
   preview() {
     // Show preview
-    const mimeType = this.selectedFile.type;
+    const mimeType = this.savedFile.file.type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
 
     const reader = new FileReader();
-    reader.readAsDataURL(this.selectedFile);
+    reader.readAsDataURL(this.savedFile.file);
     reader.onload = _event => {
-      this.previewUrl = reader.result;
+      this.savedFile.url = reader.result;
     };
   }
 

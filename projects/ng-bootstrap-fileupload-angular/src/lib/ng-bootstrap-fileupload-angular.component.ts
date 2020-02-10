@@ -71,6 +71,7 @@ export class NgBootstrapFileuploadAngularComponent
 
   clearSavedFile() {
     this.savedFile = {
+      id: null,
       name: null,
       size: null,
       url: null

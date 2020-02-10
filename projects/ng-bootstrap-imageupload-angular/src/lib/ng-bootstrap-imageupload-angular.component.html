@@ -1,15 +1,15 @@
-<img *ngIf="showPreview && previewUrl" [src]="previewUrl ? previewUrl : ''" class="img-fluid" alt="Image"
-  (click)="file.click()">
+<img *ngIf="showPreview && savedFile.url" [src]="savedFile.url ? savedFile.url : ''" class="img-fluid" alt="Image"
+  (click)="fileInput.click()">
 
-<input type="file" class="d-none invisible" placeholder="Descripción" #file (change)="onFileSelected($event)" />
+<input type="file" class="d-none invisible" placeholder="Descripción" #fileInput (change)="onFileSelected($event)" />
 
 <div class="input-group mb-2">
   <div class="input-group-prepend" (click)="clear()">
     <div class="input-group-text"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
   </div>
-  <input type="text" [value]="fileName ? fileName : ''" class="form-control" placeholder="Seleccione"
-    (click)="file.click()">
-  <div class="input-group-append" (click)="file.click()">
+  <input type="text" [value]="savedFile.name ? savedFile.name : ''" class="form-control" placeholder="Seleccione"
+    (click)="fileInput.click()">
+  <div class="input-group-append" (click)="fileInput.click()">
     <div class="input-group-text"><i class="fa fa-folder-open-o" aria-hidden="true"></i></div>
   </div>
 </div>
