@@ -36,6 +36,7 @@ export class NgBootstrapFileuploadAngularComponent
   fileName: string;
   @Input() previewUrl = null;
   @Input() showPreview = true;
+  @Input() messageSelectFile = 'Drop file here or click to upload.';
   @ViewChild('fileInput', null) fileInput: ElementRef;
 
   private onTouched: () => void = noop;
@@ -47,6 +48,19 @@ export class NgBootstrapFileuploadAngularComponent
     private inj: Injector,
     private host: ElementRef<HTMLInputElement>
   ) {}
+
+  onDragStart(event, data: any) {
+    event.dataTransfer.setData('data', data);
+  }
+
+  onDrop(event) {
+    this.uploadFile(event.dataTransfer.files[0]);
+    event.preventDefault();
+  }
+
+  allowDrop(event) {
+    event.preventDefault();
+  }
 
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
@@ -69,7 +83,11 @@ export class NgBootstrapFileuploadAngularComponent
   }
 
   onFileSelected($event) {
-    this.selectedFile = $event.target.files[0] as File;
+    this.uploadFile($event.target.files[0]);
+  }
+
+  uploadFile(fileToUpload: File) {
+    this.selectedFile = fileToUpload;
 
     if (this.selectedFile) {
       this.onChange(this.selectedFile);
@@ -92,7 +110,9 @@ export class NgBootstrapFileuploadAngularComponent
 
   bytesToSize(bytes: number) {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes === 0) { return 'n/a'; }
+    if (bytes === 0) {
+      return 'n/a';
+    }
     const i = Math.floor(Math.log(bytes) / Math.log(1024));
     return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
   }

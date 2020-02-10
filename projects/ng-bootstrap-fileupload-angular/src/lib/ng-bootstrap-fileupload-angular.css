@@ -1,6 +1,15 @@
- 
-
-.body{
+.body {
   background-color: #f03222;
 }
-  
+.text-wrap {
+  overflow-wrap: anywhere;
+}
+.holder_default { 
+  text-align: center;
+  border: 1px dashed #ccc;
+}
+
+.holder_default:hover {  
+  text-align: center;
+  border: 1px dashed #0c0 !important; 
+}
