@@ -29,10 +29,8 @@ import { FileModel } from 'ng-bootstrap-fileupload-angular/lib/file.model';
 })
 export class NgBootstrapImageuploadAngularComponent
   implements ControlValueAccessor, OnInit {
-  // selectedFile: File = null;
-  @Input() savedFile: FileModel;
+  savedFile: FileModel;
   defaultUrl: string;
-  // @Input() previewUrl = null;
   @Input() showPreview = true;
   @ViewChild('fileInput', null) fileInput: ElementRef;
 
@@ -49,8 +47,6 @@ export class NgBootstrapImageuploadAngularComponent
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
     this.ngControl = this.inj.get(NgControl);
-    this.defaultUrl = this.savedFile.url;
-    //this.clearSavedFile();
   }
 
   clearSavedFile() {
@@ -65,8 +61,11 @@ export class NgBootstrapImageuploadAngularComponent
     console.log('clearSavedFile');
   }
 
-  writeValue(newModel: any) {
-   //this.host.nativeElement.value = '';
+  writeValue(newFileModel: any) {
+    if (newFileModel) {
+      this.savedFile = newFileModel;
+      this.defaultUrl = newFileModel.url;
+    }
   }
 
   onFileSelected($event) {
@@ -81,7 +80,7 @@ export class NgBootstrapImageuploadAngularComponent
       this.preview();
 
       this.savedFile.name = this.savedFile.file.name;
-      this.savedFile.size = this.bytesToSize(this.savedFile.file.size);
+      //this.savedFile.size = this.bytesToSize(this.savedFile.file.size);
 
       this.onChange(this.savedFile);
     }
