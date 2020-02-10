@@ -1,11 +1,16 @@
 <form>
   <div [formGroup]="formGroup">
-    <ng-bootstrap-fileupload-angular
+    <!-- <ng-bootstrap-fileupload-angular formControlName="FileUp" ></ng-bootstrap-fileupload-angular> -->
+    <ng-bootstrap-imageupload-angular formControlName="FileUp" ></ng-bootstrap-imageupload-angular>
+<!--     
+    <ng-bootstrap-imageupload-angular
       previewUrl="https://raw.githubusercontent.com/danilomx/ng-bootstrap-fileupload-angular/master/src/assets/user.png"
-      showPreview="true" formControlName="FileUp"></ng-bootstrap-fileupload-angular>
+      showPreview="true" formControlName="FileUp"></ng-bootstrap-imageupload-angular> -->
   </div>
 </form>
 <button class="btn btn-radius btn-primary" (click)="guardar()" >
   <i class="fa fa-floppy-o"></i>
   Guardar
 </button>
+<br>
+

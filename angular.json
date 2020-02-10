@@ -161,6 +161,41 @@
           }
         }
       }
+    },
+    "ng-bootstrap-imageupload-angular": {
+      "projectType": "library",
+      "root": "projects/ng-bootstrap-imageupload-angular",
+      "sourceRoot": "projects/ng-bootstrap-imageupload-angular/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-bootstrap-imageupload-angular/tsconfig.lib.json",
+            "project": "projects/ng-bootstrap-imageupload-angular/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-bootstrap-imageupload-angular/src/test.ts",
+            "tsConfig": "projects/ng-bootstrap-imageupload-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-bootstrap-imageupload-angular/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-bootstrap-imageupload-angular/tsconfig.lib.json",
+              "projects/ng-bootstrap-imageupload-angular/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ngbootstrapfileuploadangular"
 }

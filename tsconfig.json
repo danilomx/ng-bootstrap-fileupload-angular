@@ -24,6 +24,12 @@
       ],
       "ng-bootstrap-fileupload-angular/*": [
         "dist/ng-bootstrap-fileupload-angular/*"
+      ],
+      "ng-bootstrap-imageupload-angular": [
+        "dist/ng-bootstrap-imageupload-angular"
+      ],
+      "ng-bootstrap-imageupload-angular/*": [
+        "dist/ng-bootstrap-imageupload-angular/*"
       ]
     }
   },

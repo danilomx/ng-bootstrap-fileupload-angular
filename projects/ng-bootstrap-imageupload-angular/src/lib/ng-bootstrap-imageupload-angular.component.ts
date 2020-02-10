@@ -14,29 +14,26 @@ import {
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs';
-import { FileModel } from './file.model';
 
 @Component({
-  selector: "ng-bootstrap-fileupload-angular",
-  templateUrl: './ng-bootstrap-fileupload-angular.component.html',
-  styleUrls: ['./ng-bootstrap-fileupload-angular.css'],
+  selector: "ng-bootstrap-imageupload-angular",
+  templateUrl: './ng-bootstrap-imageupload-angular.component.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NgBootstrapFileuploadAngularComponent),
+      useExisting: forwardRef(() => NgBootstrapImageuploadAngularComponent),
       multi: true
     }
   ]
 })
-export class NgBootstrapFileuploadAngularComponent
+export class NgBootstrapImageuploadAngularComponent
   implements ControlValueAccessor, OnInit {
   selectedFile: File = null;
-  savedFile: FileModel;
   defaultUrl: string;
   fileName: string;
   @Input() previewUrl = null;
   @Input() showPreview = true;
-  @ViewChild('fileInput', null) fileInput: ElementRef;
+  @ViewChild('file', null) file: ElementRef;
 
   private onTouched: () => void = noop;
   private onChange: (_: any) => void = noop;
@@ -52,15 +49,6 @@ export class NgBootstrapFileuploadAngularComponent
     // tslint:disable-next-line: deprecation
     this.ngControl = this.inj.get(NgControl);
     this.defaultUrl = this.previewUrl;
-    this.clearSavedFile();
-  }
-
-  clearSavedFile() {
-    this.savedFile = {
-      name: null,
-      size: null,
-      url: null
-    };
   }
 
   writeValue(newModel: any) {
@@ -69,18 +57,14 @@ export class NgBootstrapFileuploadAngularComponent
   }
 
   onFileSelected($event) {
-    console.log('file selected change');
-    console.log($event);
+
+    console.log('file selected change')
     this.selectedFile = $event.target.files[0] as File;
 
     if (this.selectedFile) {
       this.onChange(this.selectedFile);
       this.fileName = this.selectedFile.name;
       this.preview();
-
-      this.savedFile.name = this.selectedFile.name;
-      this.savedFile.size = this.bytesToSize(this.selectedFile.size);
-      console.log( this.savedFile);
     }
   }
 
@@ -88,16 +72,8 @@ export class NgBootstrapFileuploadAngularComponent
     this.selectedFile = null;
     this.fileName = '';
     this.previewUrl = this.defaultUrl;
-    this.fileInput.nativeElement.value = null;
-    this.clearSavedFile();
+    this.file.nativeElement.value = null;
     this.onChange(this.selectedFile);
-  }
-
-  bytesToSize(bytes: number) {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes === 0) { return 'n/a'; }
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
   }
 
   preview() {
