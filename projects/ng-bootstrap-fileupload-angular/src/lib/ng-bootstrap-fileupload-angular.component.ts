@@ -74,7 +74,8 @@ export class NgBootstrapFileuploadAngularComponent
       id: null,
       name: null,
       size: null,
-      url: null
+      url: null,
+      file: null
     };
   }
 

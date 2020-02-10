@@ -14,7 +14,7 @@ import {
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs';
-import { FileModel } from 'ng-bootstrap-fileupload-angular/lib/file.model';
+import { FileModel } from 'projects/ng-bootstrap-fileupload-angular/src/lib/file.model';
 
 @Component({
   selector: "ng-bootstrap-imageupload-angular",
