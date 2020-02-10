@@ -69,8 +69,6 @@ export class NgBootstrapFileuploadAngularComponent
   }
 
   onFileSelected($event) {
-    console.log('file selected change');
-    console.log($event);
     this.selectedFile = $event.target.files[0] as File;
 
     if (this.selectedFile) {
@@ -80,7 +78,6 @@ export class NgBootstrapFileuploadAngularComponent
 
       this.savedFile.name = this.selectedFile.name;
       this.savedFile.size = this.bytesToSize(this.selectedFile.size);
-      console.log( this.savedFile);
     }
   }
 
