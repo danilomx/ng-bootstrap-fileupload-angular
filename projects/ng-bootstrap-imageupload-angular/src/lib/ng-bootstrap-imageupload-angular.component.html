@@ -1,4 +1,4 @@
-<img *ngIf="showPreview && savedFile.url" [src]="savedFile.url ? savedFile.url : ''" class="img-fluid" alt="Image"
+<img *ngIf="showPreview && savedFile.url" [src]="savedFile.url ? savedFile.url : ''" class="img-fluid pb-2" alt="Image"
   (click)="fileInput.click()">
 
 <input type="file" class="d-none invisible" placeholder="Descripción" #fileInput (change)="onFileSelected($event)" />
